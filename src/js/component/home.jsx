@@ -1,25 +1,55 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
+import TrafficLight from "./trafficLight.jsx";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
+	const [color, setColor] = useState({
+		stopLight: "red",
+		warningLight: "yellow",
+		goLight: "green"
+	});
+
+	const changeColor = () => {};
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		<Fragment>
+			<div className="container text-center justify-content-center">
+				<div className="title row">
+					<p>Choose one!</p>
+				</div>
+				<div className="containerLights row">
+					<TrafficLight
+						color={color.stopLight}
+						clickChange={() => {
+							setColor({
+								stopLight: "red glow",
+								warningLight: "yellow",
+								goLight: "green"
+							});
+						}}
+					/>
+					<TrafficLight
+						color={color.warningLight}
+						clickChange={() => {
+							setColor({
+								stopLight: "red",
+								warningLight: "yellow glow",
+								goLight: "green"
+							});
+						}}
+					/>
+					<TrafficLight
+						color={color.goLight}
+						clickChange={() => {
+							setColor({
+								stopLight: "red",
+								warningLight: "yellow",
+								goLight: "green glow "
+							});
+						}}
+					/>
+				</div>
+			</div>
+		</Fragment>
 	);
 };
 
